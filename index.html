@@ -1,0 +1,290 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Instalación y Configuración de LiteBeam 5 AC y Router TP-Link</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <div class="container">
+            <h1 class="display-4">Guía Completa: Instalación y Configuración</h1>
+            <p class="lead">Ubiquiti LiteBeam 5 AC y Router TP-Link</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Introducción</h2>
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <p>Esta guía detallada le proporcionará los pasos necesarios para instalar y configurar un dispositivo Ubiquiti LiteBeam 5 AC, un potente radio de exterior ideal para enlaces punto a punto o punto a multipunto, junto con un router TP-Link estándar para la distribución de la red Wi-Fi en su hogar u oficina.</p>
+                    <p>Aprenderá a configurar ambos dispositivos desde cero, optimizando su rendimiento para una conectividad robusta y eficiente.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="intro_devices.png" class="img-fluid rounded shadow" alt="LiteBeam y Router TP-Link">
+                    <small class="text-muted d-block mt-2">Dispositivos en uso: LiteBeam 5 AC y Router TP-Link</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Sección 1: Instalación Física del LiteBeam 5 AC</h2>
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">1.1 Desempaquetado y Componentes</h5>
+                    <p>Antes de comenzar, asegúrese de tener todos los componentes incluidos:</p>
+                    <ul>
+                        <li>LiteBeam 5 AC</li>
+                        <li>Anillo de montaje</li>
+                        <li>Adaptador PoE (Power over Ethernet)</li>
+                        <li>Cable de alimentación</li>
+                    </ul>
+                    <div class="text-center my-3">
+                        <img src="litebeam_unboxed.png" class="img-fluid rounded shadow" alt="LiteBeam Desempaquetado">
+                        <small class="text-muted d-block mt-2">Contenido de la caja del LiteBeam 5 AC</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">1.2 Montaje del LiteBeam</h5>
+                    <p>Monte el LiteBeam 5 AC en un poste o superficie elevada utilizando el anillo de montaje provisto. Asegúrese de que la ubicación tenga una línea de visión clara hacia el otro punto (si es un enlace punto a punto) o hacia el área de cobertura deseada.</p>
+                    <div class="text-center my-3">
+                        <img src="litebeam_mounted.png" class="img-fluid rounded shadow" alt="LiteBeam Montado">
+                        <small class="text-muted d-block mt-2">LiteBeam 5 AC montado en un poste</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">1.3 Conexión PoE</h5>
+                    <p>Conecte un cable Ethernet desde el puerto "PoE" del adaptador PoE al puerto Ethernet del LiteBeam 5 AC. Luego, conecte un segundo cable Ethernet desde el puerto "LAN" del adaptador PoE a su computadora (temporalmente para la configuración) o al puerto WAN de su router TP-Link (una vez configurado).</p>
+                    <div class="text-center my-3">
+                        <img src="litebeam_poe_connection.png" class="img-fluid rounded shadow" alt="Conexión PoE LiteBeam">
+                        <small class="text-muted d-block mt-2">Esquema de conexión del adaptador PoE del LiteBeam</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Sección 2: Configuración del LiteBeam 5 AC (Modo Punto de Acceso)</h2>
+            <p>El LiteBeam 5 AC utiliza el sistema operativo AirOS. La IP por defecto suele ser <code>192.168.1.20</code>.</p>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">2.1 Acceso a la Interfaz AirOS</h5>
+                    <p>Conecte su computadora directamente al puerto LAN del adaptador PoE del LiteBeam. Configure la IP de su computadora en el mismo rango (ej. <code>192.168.1.10</code>, máscara <code>255.255.255.0</code>). Abra su navegador y vaya a <code>https://192.168.1.20</code>.</p>
+                    <div class="text-center my-3">
+                        <img src="litebeam_login.png" class="img-fluid rounded shadow" alt="Login AirOS">
+                        <small class="text-muted d-block mt-2">Pantalla de inicio de sesión de AirOS</small>
+                    </div>
+                    <p>Ingrese las credenciales por defecto (usualmente <code>ubnt</code> para ambos, usuario y contraseña) y cambie la contraseña cuando se le solicite.</p>
+                    <div class="text-center my-3">
+                        <img src="litebeam_dashboard.png" class="img-fluid rounded shadow" alt="Dashboard AirOS">
+                        <small class="text-muted d-block mt-2">Dashboard principal de AirOS</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">2.2 Configuración Inalámbrica (Wireless)</h5>
+                    <p>Vaya a la pestaña "Wireless". Configure los siguientes parámetros:</p>
+                    <ul>
+                        <li><strong>Wireless Mode:</strong> Access Point</li>
+                        <li><strong>SSID:</strong> Un nombre para su red (ej. "MiEnlacePrincipal")</li>
+                        <li><strong>Channel Width:</strong> 40 MHz (recomendado para LBE 5AC)</li>
+                        <li><strong>Frequency (MHz):</strong> Seleccione una frecuencia limpia (puede usar la herramienta "AirView" en Tools para escanear)</li>
+                        <li><strong>Security:</strong> WPA2-AES (Personal) y establezca una contraseña fuerte.</li>
+                    </ul>
+                    <div class="text-center my-3">
+                        <img src="litebeam_wireless_ap.png" class="img-fluid rounded shadow" alt="Configuración Wireless AP AirOS">
+                        <small class="text-muted d-block mt-2">Pestaña Wireless en modo Access Point</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">2.3 Configuración de Red (Network)</h5>
+                    <p>Vaya a la pestaña "Network". Configure los siguientes parámetros:</p>
+                    <ul>
+                        <li><strong>Network Mode:</strong> Bridge (puente)</li>
+                        <li><strong>IP Address:</strong> Asigne una IP estática que esté en el mismo rango de su red principal pero fuera del rango de DHCP de su router principal (ej. <code>192.168.1.21</code>).</li>
+                        <li><strong>Netmask:</strong> <code>255.255.255.0</code></li>
+                        <li><strong>Gateway IP:</strong> La IP de su router principal (ej. <code>192.168.1.1</code>)</li>
+                        <li><strong>Primary DNS:</strong> Un servidor DNS (ej. <code>8.8.8.8</code> de Google)</li>
+                    </ul>
+                    <div class="text-center my-3">
+                        <img src="litebeam_network_bridge.png" class="img-fluid rounded shadow" alt="Configuración Network Bridge AirOS">
+                        <small class="text-muted d-block mt-2">Pestaña Network en modo Bridge</small>
+                    </div>
+                    <p>Haga clic en "Change" y luego en "Apply" en la parte superior derecha para guardar y aplicar los cambios. El dispositivo se reiniciará.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Sección 3: Configuración del LiteBeam 5 AC (Modo Estación/Cliente - Opcional)</h2>
+            <p>Si está configurando un enlace punto a punto, el segundo LiteBeam actuará como Estación (Cliente). Los pasos son similares:</p>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">3.1 Configuración Inalámbrica (Wireless - Estación)</h5>
+                    <p>En la pestaña "Wireless":</p>
+                    <ul>
+                        <li><strong>Wireless Mode:</strong> Station</li>
+                        <li>Haga clic en el botón "Select..." al lado de "SSID" para escanear y seleccionar el SSID de su LiteBeam en modo Access Point (ej. "MiEnlacePrincipal").</li>
+                        <li>Ingrese la misma contraseña de seguridad configurada en el AP.</li>
+                    </ul>
+                    <div class="text-center my-3">
+                        <img src="litebeam_wireless_station.png" class="img-fluid rounded shadow" alt="Configuración Wireless Station AirOS">
+                        <small class="text-muted d-block mt-2">Pestaña Wireless en modo Station</small>
+                    </div>
+                    <p>La configuración de red ("Network") también debe ser en modo Bridge, y puede usar DHCP si lo desea, o una IP estática en el mismo rango que el AP pero diferente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Sección 4: Instalación Física y Conexión del Router TP-Link</h2>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">4.1 Conexión de Cables</h5>
+                    <p>Conecte el cable Ethernet que viene del puerto LAN del adaptador PoE (que está conectado al LiteBeam) al puerto WAN (generalmente de color diferente) de su router TP-Link.</p>
+                    <p>Conecte el cable de alimentación al router TP-Link y enciéndalo. Espere a que los LEDs de estado se estabilicen.</p>
+                    <div class="text-center my-3">
+                        <img src="tplink_router_ports.png" class="img-fluid rounded shadow" alt="Puertos Router TP-Link">
+                        <small class="text-muted d-block mt-2">Puertos de un Router TP-Link</small>
+                    </div>
+                    <p>Para la configuración inicial, puede conectar su computadora a uno de los puertos LAN del TP-Link, o conectarse a su red Wi-Fi por defecto (SSID y contraseña suelen estar en una etiqueta debajo del router).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Sección 5: Configuración del Router TP-Link</h2>
+            <p>La IP por defecto de los routers TP-Link suele ser <code>192.168.0.1</code> o <code>192.168.1.1</code>.</p>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">5.1 Acceso a la Interfaz del Router TP-Link</h5>
+                    <p>Abra su navegador y vaya a la IP por defecto de su router TP-Link (ej. <code>http://192.168.0.1</code>). Ingrese las credenciales de inicio de sesión (usualmente <code>admin</code> para usuario y contraseña, o las que aparecen en la etiqueta del router). Se le pedirá que configure una nueva contraseña para mayor seguridad.</p>
+                    <div class="text-center my-3">
+                        <img src="tplink_login.png" class="img-fluid rounded shadow" alt="Login TP-Link">
+                        <small class="text-muted d-block mt-2">Pantalla de inicio de sesión del Router TP-Link</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">5.2 Configuración WAN (Internet)</h5>
+                    <p>Vaya a la sección "Network" o "Internet" y busque la configuración WAN.</p>
+                    <ul>
+                        <li><strong>WAN Connection Type:</strong> Seleccione "Dynamic IP" (IP Dinámica). Esto permitirá que el router TP-Link obtenga una dirección IP automáticamente del LiteBeam (si el LiteBeam está configurado para DHCP, o si el router TP-Link está configurado en un modo que recibe IP del LiteBeam). En la mayoría de los casos con LiteBeam en modo Bridge, el router TP-Link recibirá una IP del router o red principal detrás del LiteBeam.</li>
+                    </ul>
+                    <div class="text-center my-3">
+                        <img src="tplink_wan_settings.png" class="img-fluid rounded shadow" alt="Configuración WAN TP-Link">
+                        <small class="text-muted d-block mt-2">Configuración WAN de un Router TP-Link</small>
+                    </div>
+                    <p>Guarde la configuración. El router puede reiniciarse.</p>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">5.3 Configuración Inalámbrica (Wireless)</h5>
+                    <p>Vaya a la sección "Wireless" o "Wi-Fi".</p>
+                    <ul>
+                        <li><strong>Wireless Network Name (SSID):</strong> Asigne un nombre a su red Wi-Fi (ej. "MiCasa_WiFi").</li>
+                        <li><strong>Wireless Password:</strong> Establezca una contraseña segura para su Wi-Fi.</li>
+                        <li><strong>Security:</strong> WPA2-Personal (recomendado).</li>
+                    </ul>
+                    <div class="text-center my-3">
+                        <img src="tplink_wireless_settings.png" class="img-fluid rounded shadow" alt="Configuración Wireless TP-Link">
+                        <small class="text-muted d-block mt-2">Configuración inalámbrica de un Router TP-Link</small>
+                    </div>
+                    <p>Guarde la configuración.</p>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">5.4 Configuración de Red Local (LAN)</h5>
+                    <p>Vaya a la sección "Network" o "LAN".</p>
+                    <ul>
+                        <li><strong>LAN IP Address:</strong> Puede mantener la IP por defecto (ej. <code>192.168.0.1</code>) o cambiarla si entra en conflicto con otra red. Asegúrese de que sea diferente de la IP del LiteBeam.</li>
+                        <li>Asegúrese de que el servidor DHCP esté habilitado para que el router asigne IPs a los dispositivos conectados.</li>
+                    </ul>
+                    <div class="text-center my-3">
+                        <img src="tplink_lan_settings.png" class="img-fluid rounded shadow" alt="Configuración LAN TP-Link">
+                        <small class="text-muted d-block mt-2">Configuración de red local (LAN) de un Router TP-Link</small>
+                    </div>
+                    <p>Guarde la configuración. El router puede reiniciarse.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Sección 6: Integración y Verificación</h2>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">6.1 Diagrama de Conexión Final</h5>
+                    <p>El LiteBeam 5 AC actúa como el "puente" o "cliente" que recibe la señal de internet, y el router TP-Link distribuye esa conexión a todos sus dispositivos a través de Wi-Fi y puertos LAN.</p>
+                    <div class="text-center my-3">
+                        <img src="network_diagram.png" class="img-fluid rounded shadow" alt="Diagrama de Red">
+                        <small class="text-muted d-block mt-2">Esquema de la red final</small>
+                    </div>
+                    <p><strong>Verificación:</strong></p>
+                    <ul>
+                        <li>Conecte un dispositivo (teléfono, laptop) a la red Wi-Fi de su router TP-Link.</li>
+                        <li>Intente acceder a internet.</li>
+                        <li>Si no hay conexión, revise los LEDs de estado en ambos dispositivos y las configuraciones de IP.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4">Conclusión y Solución de Problemas</h2>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <p>Siguiendo estos pasos, debería tener su LiteBeam 5 AC y su router TP-Link configurados y funcionando correctamente, proporcionando una conexión a internet estable y rápida. Recuerde siempre guardar los cambios en ambos dispositivos después de cada modificación.</p>
+
+                    <h5 class="card-title mt-4">Consejos para la Solución de Problemas:</h5>
+                    <ul>
+                        <li><strong>No puedo acceder al LiteBeam/TP-Link:</strong> Asegúrese de que la IP de su computadora esté en el mismo rango de red que el dispositivo que intenta acceder.</li>
+                        <li><strong>No hay internet:</strong>
+                            <ul>
+                                <li>Verifique que todos los cables estén bien conectados.</li>
+                                <li>Asegúrese de que el LiteBeam tenga una línea de visión clara y esté conectado a la fuente de internet correcta.</li>
+                                <li>Revise la configuración WAN de su router TP-Link.</li>
+                                <li>Verifique que los DNS estén configurados correctamente.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Señal Wi-Fi débil:</strong> Intente cambiar el canal inalámbrico de su router TP-Link a uno menos congestionado.</li>
+                        <li><strong>Reiniciar:</strong> A veces, un simple reinicio de ambos dispositivos puede resolver problemas menores.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p>&copy; 2024 Guía de Configuración. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
